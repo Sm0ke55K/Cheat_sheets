@@ -1,0 +1,38 @@
+using System;
+using System.IO;
+using System.Windows.Forms;
+
+namespace Порогрнамма_какая_то_ПТ
+{
+    public partial class Form1 : Form
+    {
+        string pafh = @"C:\Users\Роберт\Desktop\Витамин C.docx";
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        void button1_Click(object sender, EventArgs e)
+        {   
+            //Тернарная операция
+            label3.Text = check(pafh) == true ?  Methd(pafh, null) : Methd(pafh, "НЕ");
+        }
+
+        string Methd(string line, string line2)
+        {
+            return $"Файл {line} {line2} существует!";
+        }
+
+        bool check(string line)
+        {
+            if(File.Exists(line))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+}
