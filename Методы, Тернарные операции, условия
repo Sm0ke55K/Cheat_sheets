@@ -16,7 +16,7 @@ namespace Порогрнамма_какая_то_ПТ
         {   
             //Тернарная операция
             //[первый операнд - условие] ? [второй операнд] : [третий операнд]
-            label3.Text = check(pafh) == true ?  Methd(pafh, null) : Methd(pafh, "НЕ");
+            label3.Text = check(pafh) ?  Methd(pafh, null) : Methd(pafh, "НЕ");
         }
 
         string Methd(string line, string line2)
