@@ -15,6 +15,7 @@ namespace Порогрнамма_какая_то_ПТ
         void button1_Click(object sender, EventArgs e)
         {   
             //Тернарная операция
+            //[первый операнд - условие] ? [второй операнд] : [третий операнд]
             label3.Text = check(pafh) == true ?  Methd(pafh, null) : Methd(pafh, "НЕ");
         }
 
