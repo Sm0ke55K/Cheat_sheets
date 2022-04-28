@@ -26,14 +26,7 @@ namespace Порогрнамма_какая_то_ПТ
 
         bool check(string line)
         {
-            if(File.Exists(line))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return File.Exists(line) ? true : false;
         }
     }
 }
