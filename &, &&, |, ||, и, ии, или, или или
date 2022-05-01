@@ -1,0 +1,30 @@
+using System;
+using System.Windows.Forms;
+
+namespace Программа_какая_то
+{
+    public partial class Form1 : Form
+    {
+        int x = 1;
+        int y = 2;
+        int z = 3;
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        void button1_Click(object sender, EventArgs e)
+        {
+            // || - ИЛИ ИЛИ, пойдёт проверять дальше только если первыое значение не верно "x == 2" (нет, смотрю дальше)
+            // && - И И, Если "y == 1" не верно, нет смысла проверять дальше 
+            if (x == 2 || (y == 1 && z == 3))
+            {
+                label1.Text = "Всё правильно";
+            }
+            else
+            {
+                label1.Text = "Не всё правильно";
+            }
+        }
+    }
+}
