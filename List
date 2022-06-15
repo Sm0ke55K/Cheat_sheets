@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+
+namespace Интерактивный_список
+{
+    public partial class Form1 : Form
+    {
+        List<string> social = new List<string>();
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            social.Add(textBox1.Text);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //label1.Text = "";
+            //social.Add("Даниил");
+            //social.Add("Кирилл");
+            //social.Add("Матвей");
+
+            foreach (string social in social)
+            {
+                label1.Text = social + "\n";
+            }
+        }
+    }
+}
