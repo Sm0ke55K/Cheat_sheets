@@ -1,34 +1,45 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Интерактивный_список
 {
     public partial class Form1 : Form
     {
-        List<string> social = new List<string>();
         public Form1()
         {
             InitializeComponent();
         }
 
-
+        List<string> social = new List<string>();
         private void button2_Click(object sender, EventArgs e)
         {
-            social.Add(textBox1.Text);
+            if (textBox1.Text != "")
+            {
+                social.Add(textBox1.Text);
+                textBox1.Text = "";
+            }
+            label1.Text = "";
+            for (int i = 0; i < social.Count; i++)
+            {
+                label1.Text +=$"#{i+1}      {social[i]} \n";
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //label1.Text = "";
-            //social.Add("Даниил");
-            //social.Add("Кирилл");
-            //social.Add("Матвей");
-
-            foreach (string social in social)
+            social.Sort();
+            label1.Text = "";
+            for (int i = 0; i < social.Count; i++)
             {
-                label1.Text = social + "\n";
+                label1.Text += $"#{i + 1}      {social[i]} \n";
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            File.WriteAllLines(@"C:\Users\Роберт\Desktop\test\list.txt", social);
         }
     }
 }
