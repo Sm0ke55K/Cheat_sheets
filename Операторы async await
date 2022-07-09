@@ -1,11 +1,13 @@
 using System.Threading.Tasks;
 
 // Будет выполняться в отдельном потоке, не зависимо от программы
+// Асинхронность позволяет вынести отдельные задачи из основного потока в специальные асинхронные методы и при этом более экономно использовать потоки.
+
 async void Method()
         {
             await Task.Run(() =>
             { 
-                while (File.Exists(@"C:\Users\Красотка\Desktop\12.txt"))
+                while (File.Exists(@"C:\Users\Desktop\12.txt"))
                 {
                    
                 }
