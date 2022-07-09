@@ -1,6 +1,16 @@
+|**while **|
+# Проверяет, а потом делает
 while(progressBar1.Value != 100)
             {
                 progressBar1.Value++;
             }
-            
-            
+      
+      
+|** do while **|
+# Делает, а потом проверяет
+
+do
+{
+      progressBar1.Value++;
+}
+while (progressBar1.Value != 99);  // !!! 99 !!!
