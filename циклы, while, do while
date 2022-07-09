@@ -1,0 +1,6 @@
+while(progressBar1.Value != 100)
+            {
+                progressBar1.Value++;
+            }
+            
+            
