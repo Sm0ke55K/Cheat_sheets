@@ -1,17 +1,7 @@
-using System;
-using System.IO;
-using System.Windows.Forms;
-
-namespace Порогрнамма_какая_то_ПТ
-{
     public partial class Form1 : Form
     {
         // @ - Чтобы указать, что строковый литерал следует интерпретировать буквально.
         string pafh = @"C:\Users\Роберт\Desktop\Витамин C.docx";
-        public Form1()
-        {
-            InitializeComponent();
-        }
 
         void button1_Click(object sender, EventArgs e)
         {   
@@ -31,4 +21,3 @@ namespace Порогрнамма_какая_то_ПТ
             return File.Exists(line) ? true : false;
         }
     }
-}
