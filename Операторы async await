@@ -1,1 +1,25 @@
+using System.Threading.Tasks;
 
+// Будет выполняться в отдельном потоке, не зависимо от программы
+async void Method()
+        {
+            await Task.Run(() =>
+            { 
+                while (File.Exists(@"C:\Users\Красотка\Desktop\12.txt"))
+                {
+                   
+                }
+                Close();
+            });
+        }
+
+|** Delay() **|
+
+async void Method()
+        {
+                while (progressBar1.Value != 100)
+                {
+                    progressBar1.Value++;
+                    await Task.Delay(100);
+                }
+        }
