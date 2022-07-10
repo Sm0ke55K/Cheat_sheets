@@ -1,7 +1,7 @@
 async private void button2_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 10; i++, File.Delete($@"C:\Users\Красотка\Desktop\321\{i}.txt"))
+            for (int i = 0; i < 10; i++, File.Delete($@"C:\Users\Красотка\Desktop\321\{i}.txt")) // можно добавить несколько действий в цикл for (в его итератор)
             {
-                await Task.Delay(1000);
+                await Task.Delay(1000); // Задержка выполнения
             }
         }
