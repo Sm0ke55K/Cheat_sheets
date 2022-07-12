@@ -1,0 +1,13 @@
+void button2_Click()
+        {
+            int[] numbers = {1, 2, 3};
+
+            string[] lines =
+            {
+                "Строка 1",
+                "Строка 2",
+                "Строка 3"
+            };
+
+            char [] chars = {'a', 'b', 'c'};
+        }
