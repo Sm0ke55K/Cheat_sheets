@@ -1,1 +1,82 @@
+label1.Text = label1.Text.Replace("С", "с"); // Заменить букву или слово.
+###
 
+string[] lines = File.ReadAllLines(@"C:\Users\Desktop\1.txt");
+
+            foreach (string line in lines)
+                if (line.Contains("NVIDIA"))
+                    label1.Text = line;
+###
+
+label1.Text = label1.Text.Remove(6, 3);  // (От какого символа, сколько символов).
+###
+
+string line = File.ReadAllText(@"C:\Users\Desktop\1.txt");
+
+            line = line.Trim(); //   Удалить лишние пробелы.
+###
+
+label1.Text = label1.Text.ToLower();  // Переводит весь текст в нижний регистр.
+###
+
+label1.Text = label1.Text.ToUpper();  // Переводит весь текст в ВЕРХНИЙ регистр.
+###
+
+foreach (string line in lines)
+  if (line.StartsWith("Компания"))  //  Если начинается со слова.
+    label1.Text = line;
+
+foreach (string line in lines)
+  if (line.EndsWith("Компания"))  //  Если заканчивается словом.
+    label1.Text = line;
+    
+    
+    
+|* Шпаргалка *|
+Источник: https://jailbreakvideo.ru/strings
+
+// Убрать из массива строк строки по определённому критерию
+string[] array = array.Where(line => !line.Contains("Microsoft Visual C++ ")).ToArray();
+ 
+// Создать массив на основании дубликатов первого массива
+// То есть, если в первом массиве идут цифры { 1, 2, 3, 4, 4, 5, 5}, то второй будет = { 4, 5 } 
+string[] array2 = array.GroupBy(x => x).Where(g => g.Count() > 1).Select(g => g.Key).ToArray();
+ 
+// Преобразовать массив в строку
+string str = string.Join("\r\n", array);
+ 
+// Преобразовать строку в массив
+string[] array = str.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+ 
+// Отсортировать массив по алфавиту
+Array.Sort(array);
+ 
+// Массив строк минус дубликаты
+array.Distinct().ToArray();
+ 
+// Удалить всё, что идёт после определённого символа, не оставляя при этом сам символ
+text.Remove(text.IndexOf(" "));
+ 
+// Удалить всё, что идёт после определённого символа, оставив при этом сам символ
+text.Remove(text.IndexOf(" ") + 1);
+ 
+// Удалить из строки всё, что идёт до определённого символа, оставив при этом определённый символ
+text.Substring(text.IndexOf(" "));
+ 
+// Удалить из строки всё, что идёт до определённого символа, не оставляя при этом определённый символ
+text.Substring(text.IndexOf(" ") + 1);
+ 
+// Удалить из строки всё, что идёт от определённого символа, удалив при этом определённый символ
+text.Substring(0, text.IndexOf(" "));
+ 
+// Удалить из строки всё, что идёт до последнего определённого символа, не удаляя сам символ
+text.Substring(text.LastIndexOf(" "));
+ 
+// Удалить из строки всё, что идёт после последнего определённого символа, удалив при этом определённый символ
+text.Substring(0, text.LastIndexOf(" "));
+ 
+// Удалить из строки всё, что идёт до последнего определённого символа, удалив при этом сам символ
+text.Substring(text.LastIndexOf(" ") + 1);
+ 
+// Удалить из строки всё, что идёт после последнего определённого символа, оставив при этом сам символ
+text.Substring(0, text.LastIndexOf(" ") + 1);
