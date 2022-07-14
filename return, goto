@@ -1,0 +1,27 @@
+void button1_Click(object sender, EventArgs e)
+        {
+            Method();
+        }
+        
+void Method()
+        {
+            if (File.Exists(@"C:\Users\Красотка\Desktop\1.txt"))
+            {
+                return; // Выгоняет из метода.
+            }
+        }
+        
+        
+void Method2()
+        {
+            int num1 = 1;
+            int num2 = 2;
+            int num3 = 3;
+
+            goto Case;
+
+            MessageBox.Show("А где?"); // Не покажет.
+            
+            Case:
+            int sum = num1 + num2 + num3;
+        }
