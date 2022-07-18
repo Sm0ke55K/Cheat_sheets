@@ -1,0 +1,19 @@
+async void button1_Click(object sender, EventArgs e)
+        {
+            // 0,0,0 чёрный
+            // 240,240,240 белый
+
+            for (byte r = 240, g = 240, b = 240; r >= 5 & g >= 5 & b >= 5; r -= 5, g -= 5, b -= 5, await Task.Delay(10))
+            {
+                label1.ForeColor = Color.FromArgb(r, g, b);
+                pictureBox1.BackColor = Color.FromArgb(r, g, b);
+            }
+
+            for (byte r = 0, g = 0, b = 0; r <= 240 & g <= 240 & b <= 240; r += 5, g += 5, b += 5, await Task.Delay(20))
+            {
+                label1.ForeColor = Color.FromArgb(r, g, b);
+                pictureBox1.BackColor = Color.FromArgb(r, g, b);
+            }
+            label1.ForeColor = Color.FromArgb(240, 240, 240);
+            pictureBox1.BackColor = Color.FromArgb(240, 240, 240);
+        }
