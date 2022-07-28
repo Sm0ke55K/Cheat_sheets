@@ -17,3 +17,15 @@ Move(String, String, Boolean);    Перемещает указанный фай
 Open(String, FileMode);   Открывает объект FileStream по указанному пути с доступом для чтения и записи без совместного доступа.
 
 ReadAllText(String);    Открывает текстовый файл, считывает весь текст файла и затем закрывает файл.
+
+
+|*  StreamWriter  *|
+
+async void button1_Click(object sender, EventArgs e)
+        {
+            string path = @"C:\Users\Красотка\Desktop\1.txt";
+            using (StreamWriter stream = new StreamWriter(path, true))
+            {
+                stream.WriteLine("Прива");
+            }
+        } 
