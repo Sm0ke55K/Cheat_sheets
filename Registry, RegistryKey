@@ -1,1 +1,10 @@
+Registry.CurrentUser.CreateSubKey(@"SOFTWARE\Программа\тест");    //  Создать реестр
 
+RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\Программа");
+
+key.SetValue("Параметр", 1);   //  Установить параметр
+key.GetValue("Параметр");   //  Получить значние параметра
+key.DeleteSubKeyTree(@"SOFTWARE\Программа");    //  Удалить раздел
+
+using (RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Программа"))    //  Открыть раздел и закрыть его выйдя из блока using
+                label1.Text = key.GetValue("").ToString();
