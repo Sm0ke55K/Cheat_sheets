@@ -8,3 +8,12 @@ key.DeleteSubKeyTree(@"SOFTWARE\Программа");    //  Удалить ра
 
 using (RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Программа"))    //  Открыть раздел и закрыть его выйдя из блока using
                 label1.Text = key.GetValue("").ToString();
+
+
+using (RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Программа"))
+                label1.Text = key?.GetValue("Параметр")?.ToString();    //  Знак "?" проверяет 1. есть ли такой key 2. есть ли "Параметр"
+                
+                
+RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE");   //  Выводит все имена разделов
+            foreach (string str in key.GetSubKeyNames())
+                label1.Text += str + "\n";
