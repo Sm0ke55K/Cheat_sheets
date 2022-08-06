@@ -6,14 +6,31 @@ key.SetValue("Параметр", 1);   //  Установить параметр
 key.GetValue("Параметр");   //  Получить значние параметра
 key.DeleteSubKeyTree(@"SOFTWARE\Программа");    //  Удалить раздел
 
+###
 using (RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Программа"))    //  Открыть раздел и закрыть его выйдя из блока using
                 label1.Text = key.GetValue("").ToString();
 
-
+###
 using (RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Программа"))
                 label1.Text = key?.GetValue("Параметр")?.ToString();    //  Знак "?" проверяет 1. есть ли такой key 2. есть ли "Параметр"
                 
-                
+###               
 RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE");   //  Выводит все имена разделов
             foreach (string str in key.GetSubKeyNames())
                 label1.Text += str + "\n";
+
+###
+using (RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Программа"))
+                checkBox1.Checked = key?.GetValue("Параметр #1")?.ToString() == "Вкл" ? true : false;   //  Проверка параметра
+                
+                
+|*  Открыть реестр с фокусом на определенный раздел  *|
+
+foreach (Process process in Process.GetProcessesByName("regedit"))
+                process.Kill();
+
+            string path = @"HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\FloatingPointProcessor";
+            Registry.CurrentUser.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Applets\Regedit")
+                .SetValue("Lastkey", path);
+
+            Process.Start("regedit");
