@@ -1,0 +1,30 @@
+private void button1_Click(object sender, EventArgs e)
+        {
+            Process process = Process.Start(new ProcessStartInfo
+            {
+                FileName = "cmd",
+                Arguments = "/c chcp 65001 & ipconfig",
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                RedirectStandardOutput = true,
+            }) ;
+
+            label1.Text = process.StandardOutput.ReadToEnd();
+        }
+        
+Для просмотра процесса в реальном времени:
+private void button1_Click(object sender, EventArgs e)
+        {
+            Process process = Process.Start(new ProcessStartInfo
+            {
+                FileName = "cmd",
+                Arguments = "/c chcp 65001 & dism /online /cleanup-image /startcomponentcleanup",
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                RedirectStandardOutput = true,
+            }) ;
+
+            process.BeginErrorReadLine();
+            process.OutputDataReceived += (s, a) => { label1.Text += a.Data + "/n"; };
+            label1.Text = process.StandardOutput.ReadToEnd();
+        }
