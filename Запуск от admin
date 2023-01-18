@@ -1,0 +1,4 @@
+Обозреватель решений ПКМ -> Добавить -> Компонент... -> Файл манифеста приложений
+    Заменить:
+<requestedExecutionLevel level="asInvoker" uiAccess="false" />
+<requestedExecutionLevel level = "requireAdministrator" uiAccess="false" />
