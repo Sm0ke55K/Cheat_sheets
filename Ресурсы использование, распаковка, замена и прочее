@@ -1,0 +1,18 @@
+using prog.Properties;
+
+### Смена картинки в pictureBox из Resources
+pictureBox1.MouseEnter += (s, a) => { pictureBox1.BackgroundImage = Resources.invers; };
+pictureBox1.MouseLeave += (s, a) => { pictureBox1.BackgroundImage = Resources.orig; };
+
+### Сохранить картинку из Resources
+Resources.orig.Save(@"C:\Users\Super\Desktop\orig.png");
+
+### Сохранить текстовый файл из Resources
+File.WriteAllText(@"C:\Users\Super\Desktop\Текст.txt", Resources._1);
+
+### Сохранить exe файл из Resources
+File.WriteAllBytes(@"C:\Users\Super\Desktop\Файл.exe", Resources.HouseOfAshes);
+
+### Сохранить ico файл из Resources
+using (FileStream stream = new FileStream(@"C:\Users\Super\Desktop\Иконка.ico", FileMode.Create))
+    Resources.cloud.Save(stream);
