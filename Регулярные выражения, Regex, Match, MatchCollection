@@ -1,0 +1,36 @@
+### Поиск слова в текста с помощью Regex
+string line = "Текст, текст, ещё раз текст, много текста";
+Regex regex = new Regex("текст");
+MatchCollection match = regex.Matches(line);
+label1.Text = match.Count.ToString();
+
+### Замена символа в строке по маске Regex(@"\s+")
+string line = "Текст,   текст,   ещё раз   текст,    много текста";
+label1.Text = new Regex(@"\s+").Replace(line, " ");
+
+### Парсин сайта, получение курса доллара
+string line = "";
+using (WebClient wc = new WebClient())
+    line = wc.DownloadString("http://www.cbr.ru/scripts/XML_daily.asp");
+Match match = Regex.Match(line, "<Name>Доллар США</Name><Value>(.*?)</Value>");
+label1.Text = match.Groups[1].Value;
+
+### Парсин сайта, получение страны и часового пояса по ip адресу 
+void button1_Click(object sender, EventArgs e)
+        {
+            string line = "";
+            using (WebClient wc = new WebClient())
+                line = wc.DownloadString($"http://free.ipwhois.io/xml/{textBox1.Text}");
+            Match match = Regex.Match(line, "<country>(.*?)</country>(.*?)<timezone_gmt>(.*?)</timezone_gmt>");
+            label1.Text = match.Groups[1].Value + "\n" + match.Groups[3].Value;
+        }
+
+        void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (Regex.IsMatch(textBox1.Text, "[^0-9-.]"))
+            {
+                //MessageBox.Show("Только цифры.", Text, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1);
+                textBox1.SelectionStart = textBox1.TextLength;
+            }
+        }
