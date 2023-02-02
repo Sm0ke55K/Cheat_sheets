@@ -1,0 +1,47 @@
+### База по progressBar
+
+async void button1_Click(object sender, EventArgs e)
+        {
+            string[] files = Directory.GetFiles(@"C:\Users\Super\Desktop\Temp", "*.txt");  //Достать все файлы из директории
+            int lenght = files.Length;
+            progressBar1.Maximum = lenght;
+
+            while (lenght > 0)  //Изменить progressBar
+            {
+                label1.Text = files[lenght - 1];
+                progressBar1.Value++;
+                lenght--;
+                await Task.Delay(300);
+            }
+        }
+        
+        
+### HttpWebRequest / WebResponse получение размера файла (Проще через WebClient)
+
+HttpWebRequest request = HttpWebRequest.CreateHttp("https://download.virtualbox.org/virtualbox/7.0.6/VirtualBox-7.0.6-155176-Win.exe");  //Запрос
+            using (WebResponse response = request.GetResponse())  //Ответ
+                label1.Text = ((double)response.ContentLength / 1048576).ToString("#.# Mb");
+
+
+                string url = @"https://download.virtualbox.org/virtualbox/7.0.6/VirtualBox-7.0.6-155176-Win.exe";
+            using (WebClient wc = new WebClient())
+            {
+                wc.OpenRead(url);
+                label1.Text = (Convert.ToDouble(wc.ResponseHeaders["Content-Length"]) / 1048576).ToString("#.# Mb");
+            };
+            
+            
+### Получение размера файла и процента загрузки через WebClient  
+
+string url = @"https://download.virtualbox.org/virtualbox/7.0.6/VirtualBox-7.0.6-155176-Win.exe";
+            using (WebClient wc = new WebClient())
+            {
+                wc.OpenRead(url);
+                string size = (Convert.ToDouble(wc.ResponseHeaders["Content-Length"]) / 1048576).ToString("#.# Mb"); //Размер в строке
+                wc.DownloadProgressChanged += (s, a) => //Событие на изменение загрузки
+                {
+                    label1.Text = $"Размер файла: {size}\nЗагружено: {a.ProgressPercentage}% ({((double)a.BytesReceived / 1048576).ToString("#.#")} Mb)";
+                    progressBar1.Value = a.ProgressPercentage; //Процент выполнения задачи
+                };
+                wc.DownloadFileAsync(new Uri(url), @"C:\Users\Super\Desktop\Temp\VirtualBox.exe"); //Загрузка в отдельном потоке 
+            }
