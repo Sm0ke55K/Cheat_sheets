@@ -1,0 +1,19 @@
+private void button1_Click(object sender, EventArgs e)
+        {
+            progressBar1.Reset();
+            progressBar1.Max1000();
+        }
+    }
+    public static class Ext  //Класс для расширений progressBar
+    {
+        public static void Reset(this ProgressBar progress, int val = 10, int max = 100)  //Сбросить параметры progressBar
+        {
+            progress.Value = val;
+            progress.Maximum = max;
+        }
+
+        public static void Max1000(this ProgressBar progress, int max = 1000)  //Максимальное значение 1000;
+        {
+            progress.Maximum = max;
+        }
+    }
