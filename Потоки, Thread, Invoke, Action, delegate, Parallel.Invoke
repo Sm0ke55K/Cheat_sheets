@@ -1,0 +1,71 @@
+### Создать новый фоновый поток
+
+private void button1_Click(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(() =>
+            {
+                label1.Text = "123";    //Какая-то операция
+            });    //Новый поток 
+            thread.IsBackground = true;     //Работать после закрытия программы
+            thread.Start();     //Старт потока
+        }
+        
+        
+### Аналогичная запись
+
+new Thread(() =>
+            {
+                label1.Text = "123";    //Какая-то операция
+            })
+            {
+                IsBackground = true,    //Работать после закрытия программы
+                //Priority = ThreadPriority.Highest      //Высокий приорите 
+            }.Start();    //Запуск потока
+            
+            
+### Action Делегат 
+
+new Thread(() => 
+            {
+                Action action = () =>      
+                {
+                    label1.Text = "123";
+                };
+
+                if (InvokeRequired)     //Если не в том потоке - делай вызов, если нет то сделай некое действие 
+                    Invoke(action);     //Invoke - Выполняет указанный делегат в том потоке, которому принадлежит базовый дескриптор окна элемента управления.
+                else
+                    action();
+                
+            }).Start();    //Запуск потока
+            
+            
+### Если нужен именно Action
+
+new Thread(() =>
+            {
+                Invoke((Action) (() =>   //Вызвать Action который вызовет делегат который вызовет какое-то действие.   Так же возможно *BeginInvoke((MethodInvoker) (() =>
+                {
+                    label1.Text = "123";
+                }));
+
+            }).Start();
+            
+            
+### Parallel.Invoke
+
+Parallel.Invoke(    //Для выполнения одновременных задач
+                () =>
+                {
+                    //Задача 1
+                },
+
+                () =>
+                {
+                    //Задача 2
+                },
+
+                () =>
+                {
+                    //Задача 3
+                });
