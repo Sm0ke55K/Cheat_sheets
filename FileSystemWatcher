@@ -1,0 +1,16 @@
+        void Watcher_Created(object sender, FileSystemEventArgs e) => label1.Text += $"Файл 1.txt создан {DateTime.Now}\n";
+        void Watcher_Delite(object sender, FileSystemEventArgs e) => label1.Text += $"Файл 1.txt удалён {DateTime.Now}\n";
+        void Watcher_Renamed(object sender, FileSystemEventArgs e) => label1.Text += $"Файл 1.txt переименован {DateTime.Now}\n";
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            FileSystemWatcher watcher = new FileSystemWatcher(@"C:\Users\Super\Desktop", "1.txt");
+            watcher.EnableRaisingEvents = true;
+            watcher.SynchronizingObject = this;
+
+            watcher.Created += new FileSystemEventHandler(Watcher_Created);
+            watcher.Deleted += new FileSystemEventHandler(Watcher_Delite);
+            watcher.Renamed += new RenamedEventHandler(Watcher_Renamed);
+        }
+
+// Отслеживание изменений в файловой системе
