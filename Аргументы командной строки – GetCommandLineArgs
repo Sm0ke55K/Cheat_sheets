@@ -1,0 +1,9 @@
+Проверка запущенного аргумента
+
+var args = Environment.GetCommandLineArgs();
+            foreach (var arg in args)
+            {
+                if (arg.EndsWith("/help") || arg.EndsWith("/h"))
+                    label1.Text = "Руководство...";
+            }
+            
